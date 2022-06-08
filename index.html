@@ -8,8 +8,74 @@
 </head>
 <body>
     <script>
-
         
+
+        game();
+        
+
+        function game() {
+            let playerScore = 0;
+            let computerScore = 0;
+            for (let i = 0; i < 5; i++) {
+              let playerSelection = capitalizeFirstLetter(prompt("Type either Rock, Paper, or Scissors: "));
+              const computerSelection = computerPlay();
+              if (playRound(playerSelection, computerSelection) === 0) {
+                  console.log("It's a tie!");
+              }
+              else if (playRound(playerSelection, computerSelection) === 1) {
+                console.log(`You win this round! ${playerSelection} beats ${computerSelection}`);
+                playerScore++;
+              }
+              else  {
+               console.log(`You Lose this round! ${computerSelection} beats ${playerSelection}`);
+               computerScore++;
+              }
+            }
+
+            if (playerScore == computerScore) {
+                console.log(`Game Over! ${playerScore} - ${computerScore} It's a tie`);
+            }
+            else if (playerScore > computerScore) {
+                console.log(`Game Over! ${playerScore} - ${computerScore} You win!`)
+            }
+            else {
+                console.log(`Game Over! ${playerScore} - ${computerScore} You Lose!`)
+            }
+            
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            if (playerSelection === computerSelection) {
+                return 0;
+            }
+            else if (playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection ==='Scissors' && computerSelection === 'Paper' || 
+            playerSelection === 'Paper' && computerSelection ==='Rock') {
+                return 1;
+            }
+            else{
+                return 2;
+            }
+        }
+       
+        function computerPlay() {
+            let computerChoice = Math.floor(Math.random() * 3);
+
+            if (computerChoice === 0) {
+                return 'Rock';
+            }
+            else if (computerChoice === 1) {
+                return 'Paper';
+            }
+            else {
+                return 'Scissors';
+            }
+        }
+
+        function capitalizeFirstLetter(string) {
+            let char = string.charAt(0);
+            char = char.toUpperCase();
+            return char + string.slice(1);
+        }
     </script>
 </body>
 </html>
