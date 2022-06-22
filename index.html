@@ -4,57 +4,60 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
+
+     <button class="player-selection">Rock</button>
+     <button class="player-selection">Paper</button>
+     <button class="player-selection">Scissors</button>
+
+
+
+
     <script>
         
 
-        game();
+    
         
 
-        function game() {
-            let playerScore = 0;
-            let computerScore = 0;
-            for (let i = 0; i < 5; i++) {
-              let playerSelection = capitalizeFirstLetter(prompt("Type either Rock, Paper, or Scissors: "));
-              const computerSelection = computerPlay();
-              if (playRound(playerSelection, computerSelection) === 0) {
-                  console.log("It's a tie!");
-              }
-              else if (playRound(playerSelection, computerSelection) === 1) {
-                console.log(`You win this round! ${playerSelection} beats ${computerSelection}`);
-                playerScore++;
-              }
-              else  {
-               console.log(`You Lose this round! ${computerSelection} beats ${playerSelection}`);
-               computerScore++;
-              }
-            }
+        
+           
 
-            if (playerScore == computerScore) {
-                console.log(`Game Over! ${playerScore} - ${computerScore} It's a tie`);
-            }
-            else if (playerScore > computerScore) {
-                console.log(`Game Over! ${playerScore} - ${computerScore} You win!`)
-            }
-            else {
-                console.log(`Game Over! ${playerScore} - ${computerScore} You Lose!`)
-            }
+
+            //   let playerSelection = capitalizeFirstLetter(prompt("Type either Rock, Paper, or Scissors: "));
+            //   const computerSelection = computerPlay();
+            //   if (playRound(playerSelection, computerSelection) === 0) {
+            //       console.log("It's a tie!");
+            //   }
+            //   else if (playRound(playerSelection, computerSelection) === 1) {
+            //     console.log(`You win this round! ${playerSelection} beats ${computerSelection}`);
+            //     playerScore++;
+            //   }
+            //   else  {
+            //    console.log(`You Lose this round! ${computerSelection} beats ${playerSelection}`);
+            //    computerScore++;
+            //   }
             
-        }
 
-        function playRound(playerSelection, computerSelection) {
-            if (playerSelection === computerSelection) {
-                return 0;
-            }
-            else if (playerSelection === 'Rock' && computerSelection === 'Scissors' || playerSelection ==='Scissors' && computerSelection === 'Paper' || 
-            playerSelection === 'Paper' && computerSelection ==='Rock') {
-                return 1;
-            }
-            else{
-                return 2;
-            }
+            // if (playerScore == computerScore) {
+            //     console.log(`Game Over! ${playerScore} - ${computerScore} It's a tie`);
+            // }
+            // else if (playerScore > computerScore) {
+            //     console.log(`Game Over! ${playerScore} - ${computerScore} You win!`)
+            // }
+            // else {
+            //     console.log(`Game Over! ${playerScore} - ${computerScore} You Lose!`)
+            // }
+            
+        
+
+        function playRound(e) {
+            let playerSelection = e.target.innerText;
+            let computerSelection = computerPlay();
+            console.log(playerSelection);
+            console.log(computerSelection);
         }
        
         function computerPlay() {
@@ -76,6 +79,12 @@
             char = char.toUpperCase();
             return char + string.slice(1);
         }
+
+        let playerScore = 0;
+        let computerScore = 0;
+        const selections = document.querySelectorAll('.player-selection');
+        selections.forEach(selection => selection.addEventListener('click', playRound)); 
+        
     </script>
 </body>
 </html>
