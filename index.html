@@ -8,68 +8,90 @@
     <title>Document</title>
 </head>
 <body>
-
-     <button class="player-selection">Rock</button>
-     <button class="player-selection">Paper</button>
-     <button class="player-selection">Scissors</button>
-
+    <div class="header">ROCK. PAPER. SCISSORS.</div>
+    <div class="game-area">
+     <div class="round-result"></div>
+     <div class="scoreboard">
+        <div >
+          <img class="player-img" src="rps-question.png">
+          <p class="player-score">Testng the jimmy text.</p>
+        </div>
+        <div >
+           <img class="computer-img" src="rps-question.png">
+           <p class="computer-score">Testing the computer score</p>
+        </div>
+     </div>
+     <div class="choices">
+        <button class="player-selection"><img id ='Rock'  src="rps-rock.png"></button>
+        <button class="player-selection"><img id ='Paper' src="rps-paper.png"></button>
+        <button class="player-selection"><img id ='Scissors' src="rps-scissors.png"></button>
+    </div>
+     
+    </div>
 
 
 
     <script>
-        
-
-    
-        
-
-        
-           
-
-
-            //   let playerSelection = capitalizeFirstLetter(prompt("Type either Rock, Paper, or Scissors: "));
-            //   const computerSelection = computerPlay();
-            //   if (playRound(playerSelection, computerSelection) === 0) {
-            //       console.log("It's a tie!");
-            //   }
-            //   else if (playRound(playerSelection, computerSelection) === 1) {
-            //     console.log(`You win this round! ${playerSelection} beats ${computerSelection}`);
-            //     playerScore++;
-            //   }
-            //   else  {
-            //    console.log(`You Lose this round! ${computerSelection} beats ${playerSelection}`);
-            //    computerScore++;
-            //   }
-            
-
-            // if (playerScore == computerScore) {
-            //     console.log(`Game Over! ${playerScore} - ${computerScore} It's a tie`);
-            // }
-            // else if (playerScore > computerScore) {
-            //     console.log(`Game Over! ${playerScore} - ${computerScore} You win!`)
-            // }
-            // else {
-            //     console.log(`Game Over! ${playerScore} - ${computerScore} You Lose!`)
-            // }
-            
-        
 
         function playRound(e) {
-            let playerSelection = e.target.innerText;
-            let computerSelection = computerPlay();
-            console.log(playerSelection);
-            console.log(computerSelection);
+            playerSelection = e.target.id;
+            computerSelection = computerPlay();
+            
+            playerImage.src = e.target.src; 
+            
+
+            if (playerSelection === computerSelection) {
+                  results.textContent = "It's a tie!";
+              }
+              else if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection === 'Paper' &&  computerSelection === 'Rock') 
+              || (playerSelection ==='Scissors' && computerSelection ==='Paper')) {
+                results.textContent = `You win this round! ${playerSelection} beats ${computerSelection}`;
+                playerScore++;
+              }
+              else  {
+               results.textContent =`You Lose this round! ${computerSelection} beats ${playerSelection}`;
+               computerScore++;
+              }
+
+            updateScore();
+
+            if (playerScore >= 5 ) {
+                results.textContent = "Game Over! You Actually Won!!";
+                resetGame()
+             }
+            else if (computerScore >= 5) {
+                results.textContent = "Game Over! You lose, chump.";
+                resetGame();
+            }
+        }
+
+        function resetGame() {
+                playerImage.src = 'rps-question.png';
+                computerImage.src = 'rps-question.png';
+                playerScore = 0;
+                computerScore = 0;
+        }
+
+        function updateScore() {
+
+            playerScoreDisplay.textContent = `Player: ${playerScore}`;
+            computerScoreDisplay.textContent = `Enemy: ${computerScore}`;
+            
         }
        
         function computerPlay() {
             let computerChoice = Math.floor(Math.random() * 3);
 
             if (computerChoice === 0) {
+                computerImage.src = "rps-rock.png";
                 return 'Rock';
             }
             else if (computerChoice === 1) {
+                computerImage.src = "rps-paper.png";
                 return 'Paper';
             }
             else {
+                computerImage.src = "rps-scissors.png"
                 return 'Scissors';
             }
         }
@@ -79,11 +101,27 @@
             char = char.toUpperCase();
             return char + string.slice(1);
         }
+        const results = document.querySelector('.round-result');
+
+        const playerImage = document.querySelector('.player-img');
+        const computerImage = document.querySelector('.computer-img');
+
+        const playerScoreDisplay = document.querySelector('.player-score'); 
+        const computerScoreDisplay = document.querySelector('.computer-score')
+
+        let playerSelection;
+        let computerSelection;
 
         let playerScore = 0;
         let computerScore = 0;
+        results.textContent = "First to 5 points wins!"
+        updateScore();
+
         const selections = document.querySelectorAll('.player-selection');
         selections.forEach(selection => selection.addEventListener('click', playRound)); 
+       // selections.forEach(selection => selection.addEventListener('mouseup', notClicked));
+
+    
         
     </script>
 </body>

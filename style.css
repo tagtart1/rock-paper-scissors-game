@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body,
+html {
+    display: flex;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+    font-family: Roboto;
+    height: 100%;
+    
+}
+
+
+.header {
+    display: flex;
+    justify-content: center;
+    border: 0;
+    margin: 0;
+    background-color: #293556;
+    padding: 30px;
+    color: #ff7bbf;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 50px;
+    
+}
+.round-result{
+    font-size: 40px;
+    font-weight: bolder;
+    margin: 35px;
+}
+
+.game-area {
+    background-color: #50409a ;
+    display: flex;
+    flex-direction:  column;
+    align-items: center;
+    
+    height: 100%;
+}
+
+.choices {
+    margin: 25px;
+    display: flex;
+    gap: 25px;
+}
+
+button {
+    transition-duration: 0.4s;
+   
+    border-radius: 15px;
+    border-width: 0;
+    background-color: #964EC2;
+}
+
+button:hover {
+    background-color: #48255e;
+}
+
+
+
+img {
+    height: 150px;
+    width: 150px;
+}
+
