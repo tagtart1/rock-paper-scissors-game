@@ -46,17 +46,35 @@ html {
 }
 
 button {
+    box-shadow: 6px 6px 12px 1px rgba(217, 98, 233, 0.2);
     transition-duration: 0.4s;
-   
     border-radius: 15px;
     border-width: 0;
     background-color: #964EC2;
 }
 
 button:hover {
-    background-color: #48255e;
+    background-color: #783d9c;
+}
+button:active {
+    background-color: #ffc2ff;
+   
+    transform: translateY(6px);
+  }
+
+.computer-score,
+.player-score {
+    font-weight: bold;
+    font-size: 25px;
+    text-align: center;
 }
 
+.scoreboard{
+    display: flex;
+    gap: 35px;
+    justify-content: center;
+
+}
 
 
 img {
